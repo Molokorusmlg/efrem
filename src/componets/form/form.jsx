@@ -1,121 +1,70 @@
 import "./form.scss";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
+import cn from "classnames";
+import RegistartionForm from "./formRegistration/formRegistration";
+import AuthenticatioForm from "./formAuthenticatio/formAuthenticatio";
 
 const MyForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const [isRegister, setIsRegister] = useState(true);
+  const authClass = isRegister ? "register" : "authenticatio";
 
-  const onSubmit = (data) => {
-    console.log("Registration Data:", data);
-    postUser(data);
+  const signIn = () => {
+    setIsRegister(false);
   };
 
-  const postUser = (data) => {
-    fetch("https://6750125869dc1669ec198aa9.mockapi.io/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-      body: JSON.stringify({
-        name: data.firstName,
-        lastname: data.lastName,
-        email: data.email,
-        password: data.password,
-      }),
-    }).then((res) => res.json().finally(console.log("comlete")));
+  const signUp = () => {
+    setIsRegister(true);
   };
 
   return (
     <div className="form__background">
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="form__inputs">
-          <div className="form__block__input">
-            {errors.firstName && (
-              <label
-                htmlFor="firstName"
-                className={`form__error ${errors.firstName ? "visible" : ""}`}
-              >
-                {errors.firstName.message}
-              </label>
-            )}
-            <input
-              className="form__input"
-              placeholder="Имя"
-              id="firstName"
-              {...register("firstName", {
-                required: "*First name is required",
-              })}
-            />
-          </div>
-          <div className="form__block__input">
-            {errors.lastName && (
-              <label
-                htmlFor="lastName"
-                className={`form__error ${errors.firstName ? "visible" : ""}`}
-              >
-                {errors.lastName.message}
-              </label>
-            )}
-            <input
-              className="form__input"
-              placeholder="Фамилия"
-              id="lastName"
-              {...register("lastName", { required: "*Last name is required" })}
-            />
-          </div>
-          <div className="form__block__input">
-            {errors.email && (
-              <label
-                htmlFor="email"
-                className={`form__error ${errors.firstName ? "visible" : ""}`}
-              >
-                {errors.email.message}
-              </label>
-            )}
-            <input
-              className="form__input"
-              placeholder="Почта"
-              id="email"
-              {...register("email", {
-                required: "*Email is required",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "*Invalid email address",
-                },
-              })}
-            />
-          </div>
-          <div className="form__block__input">
-            {errors.password && (
-              <label
-                htmlFor="password"
-                className={`form__error ${errors.firstName ? "visible" : ""}`}
-              >
-                {errors.password.message}
-              </label>
-            )}
-            <input
-              className="form__input"
-              placeholder="Пароль"
-              id="password"
-              type="password"
-              {...register("password", {
-                required: "*Password is required",
-                minLength: {
-                  value: 8,
-                  message: "*Password must be at least 8 characters",
-                },
-              })}
-            />
+      <div className="switch__buttons">
+        <div
+          className={cn("switch__buttons__block", {
+            ["button_selected"]: !isRegister,
+            ["button_selected-no"]: isRegister,
+          })}
+          onClick={signIn}
+        >
+          <p className="switch__buttons__button">Вход</p>
+
+          <div
+            className={cn("switch__underline", {
+              ["form__selected-underline"]: !isRegister,
+              ["form__selected-no"]: isRegister,
+            })}
+          >
+            <span></span>
           </div>
         </div>
-        <button className="form__button" type="submit">
-          Sumbit
-        </button>
-      </form>
+
+        <div
+          className={cn("switch__buttons__block", {
+            ["button_selected-no"]: !isRegister,
+            ["button_selected"]: isRegister,
+          })}
+          onClick={signUp}
+        >
+          <p className="switch__buttons__button">Регистрация</p>
+          <div
+            className={cn("switch__underline", {
+              ["form__selected-underline"]: isRegister,
+              ["form__selected-no"]: !isRegister,
+            })}
+          >
+            <span></span>
+          </div>
+        </div>
+      </div>
+      {authClass == "register" ? (
+        <>
+          <RegistartionForm />
+        </>
+      ) : (
+        <>
+          <AuthenticatioForm />
+        </>
+      )}
     </div>
   );
 };
