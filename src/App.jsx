@@ -1,13 +1,22 @@
 import { useState } from "react";
 import MyForm from "./componets/form/form";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import MainPage from "./componets/main/main";
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <MyForm />;
+  return (
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/form" element={<MyForm />}></Route>
+        </Routes>
+        <Routes>
+          <Route path="/main" element={<MainPage />}></Route>
+        </Routes>
+      </Router>
+    </div>
+  );
 }
 
 export default App;

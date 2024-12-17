@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import cn from "classnames";
 
 function RegistartionForm() {
+  const navigate = useNavigate();
   const resetData = () => {
     reset();
   };
@@ -18,6 +20,10 @@ function RegistartionForm() {
         body: JSON.stringify({ ...data }),
       }
     );
+    if (!response.ok) return;
+
+    navigate("/main");
+
     console.log(data);
   };
 
