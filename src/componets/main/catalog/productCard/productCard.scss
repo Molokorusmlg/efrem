@@ -1,8 +1,19 @@
 @use "../../../../global.scss";
 
+.catalog {
+  @include global.flex(row, flex-end, center);
+  padding: 20px;
+  margin-top: 100px;
+  &_grid {
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+    grid-template-rows: 650px 650px;
+  }
+}
+
 .card {
   @include global.flex(column, none, center);
-  gap: 10px;
+  gap: 18px;
   width: 300px;
   height: 600px;
   background-color: #141414;
@@ -22,10 +33,17 @@
     color: #c3c6ff;
     font-size: 15px;
     font-weight: 800;
+    text-align: center;
+    width: 80%;
   }
 
-  &__text {
+  &__button {
+    width: 96%;
+  }
+
+  &__description {
     text-align: center;
+    width: 80%;
   }
 
   &__img {

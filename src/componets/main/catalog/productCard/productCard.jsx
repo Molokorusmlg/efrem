@@ -1,12 +1,16 @@
-import "./productCard.scss";
-
 function ProductCard({ img, title, description, id }) {
   return (
     <div className="card">
-      <img className="card__img" src={img} alt={description} />
+      <img
+        className="card__img"
+        src="https://i.ibb.co/T8Q89vV/gg.png"
+        alt={description}
+      />
       <p className="card__title">{title}</p>
       <p className="card__description">{description}</p>
-      <button type="button">Buy</button>
+      <button className="card__button" type="button">
+        Buy
+      </button>
     </div>
   );
 }

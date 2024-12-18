@@ -1,7 +1,7 @@
 import ProductCard from "./productCard/productCard";
-import cardImg from "../../../assets/img/cloth.png";
 import { data } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "./productCard/productCard.scss";
 
 function Catalog() {
   const PRODUCTS_URL = "https://675ebc5f1f7ad24269967ed4.mockapi.io/Products";
@@ -27,17 +27,24 @@ function Catalog() {
 
   return (
     <div className="catalog">
-      {cardList.map((card, key) => {
-        return (
-          <ProductCard
-            img={card.img}
-            title={card.title}
-            description={card.description}
-            id={card.id}
-            key={key}
-          />
-        );
-      })}
+      <div className="catalog_grid">
+        {cardList.map((card, key) => {
+          let newCardDescription = card.description;
+          if (card.description.length >= 35) {
+            newCardDescription = card.description.slice(0, 35);
+            newCardDescription += "...";
+          }
+          return (
+            <ProductCard
+              img={card.img}
+              title={card.title}
+              description={newCardDescription}
+              id={card.id}
+              key={key}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
