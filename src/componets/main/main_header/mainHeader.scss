@@ -6,8 +6,7 @@
   background-color: #272727;
   border-bottom: 2px solid #1b1b1b;
   border-radius: 0px 0px 7px 7px;
-  position: fixed;
-  top: 0px;
+
   width: 100%;
 
   &_title {
@@ -38,9 +37,26 @@
     }
   }
 
+  &_search {
+    @include global.flex(column, none, none);
+
+    &_input {
+      padding: 10px;
+      border-radius: 7px;
+      border: 0;
+      outline: none;
+      border: 1px solid #1b1b1b;
+      transition: 0.3s ease-in-out;
+
+      &:hover {
+        border-color: #646cff;
+      }
+    }
+  }
+
   &_nav {
     @include global.flex(row, space-between, center);
-    gap: 35px;
+    gap: 55px;
 
     &_link {
       text-decoration: none;

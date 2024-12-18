@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ReactImg from "../../../assets/react.svg";
-import "./main__header.scss";
-import MainHeaderLink from "./main__header_link/main__header_link";
+import "./mainHeader.scss";
+import MainHeaderLink from "./main__header_link/main__header_link.jsx";
 
 function MainHeader() {
   return (
@@ -13,6 +13,15 @@ function MainHeader() {
         <MainHeaderLink text="Card" />
         <MainHeaderLink text="Seil" />
       </nav>
+
+      <div className="main__header_search">
+        <input
+          id="serch_input"
+          type="text"
+          className="main__header_search_input"
+          placeholder="Search..."
+        />
+      </div>
 
       <div className="main__header_profile">
         <img src={ReactImg} alt="" className="main__header_profile_img" />

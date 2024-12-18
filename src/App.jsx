@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MyForm from "./componets/form/form";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import MainPage from "./componets/main/main";
+import MainPage from "./componets/main/mainPage";
 import "./App.css";
 
 function App() {

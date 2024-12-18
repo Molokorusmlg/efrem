@@ -1,0 +1,39 @@
+@use "../../../../global.scss";
+
+.card {
+  @include global.flex(column, none, center);
+  gap: 10px;
+  width: 300px;
+  height: 600px;
+  background-color: #141414;
+  border-radius: 7px;
+  border: 1px solid #141414;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    border-color: #646cff60;
+  }
+
+  &:hover .card__img {
+    opacity: 1;
+  }
+
+  &__title {
+    color: #c3c6ff;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  &__text {
+    text-align: center;
+  }
+
+  &__img {
+    padding: 1px;
+    width: 300px;
+    height: 400px;
+    border-radius: 7px 7px 0px 0px;
+    opacity: 0.9;
+    transition: 0.2s ease-in-out;
+  }
+}
